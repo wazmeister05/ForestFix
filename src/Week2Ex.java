@@ -26,8 +26,9 @@ public class Week2Ex {
         tree.postorder();
 
         System.out.println("\n\n-----");
+        System.out.println("\n\n5. Breadth First method");
         for (Position<Character> node : tree.breadthFirst()) {
-            System.out.println(node.getElement());
+            System.out.print(node.getElement());
         }
 
     }

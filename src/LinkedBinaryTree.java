@@ -14,6 +14,8 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         private Node<E> left;                                       //every internal node will have a left child
         private Node<E> right;                                      //every internal node will have a right child
 
+        private int x, y;
+
         public Node(E element, Node<E> parent, Node<E> leftChild, Node<E> rightChild) {         //called by LinkedBinaryTree.createNode
             this.element = element;
             this.parent = parent;
@@ -48,6 +50,26 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         @Override
         public E getElement() {
             return element;
+        }
+
+        @Override
+        public int getX() {
+            return x;
+        }
+
+        @Override
+        public int getY() {
+            return y;
+        }
+
+        @Override
+        public void setX(int x) {
+            this.x = x;
+        }
+
+        @Override
+        public void setY(int y) {
+            this.y = y;
         }
 
         public void setElement(E element){                          //override currently stored element
@@ -190,27 +212,27 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
 
 
-    private void inorderSubtree(Node node, List<Position<E>> temp) {
-        if(node == null){
-            return;             //researching solutions to this and apparently this is possible. Who knew.
-        }
-        inorderSubtree(node.getLeft(), temp);
-        temp.add(node);
-        inorderSubtree(node.getRight(), temp);
-
-
-    }
-
-    public Iterable<Position<E>> inorder() {
-        List<Position<E>> temp = new ArrayList<>();
-        if(!isEmpty()){
-            inorderSubtree(validate(root()), temp);
-        }
-        for(Position<E> pos : temp){
-            System.out.print(pos.getElement());
-        }
-        return temp;
-    }
+//    private void inorderSubtree(Node node, List<Position<E>> temp) {
+//        if(node == null){
+//            return;             //researching solutions to this and apparently this is possible. Who knew.
+//        }
+//        inorderSubtree(node.getLeft(), temp);
+//        temp.add(node);
+//        inorderSubtree(node.getRight(), temp);
+//
+//
+//    }
+//
+//    public Iterable<Position<E>> inorder() {
+//        List<Position<E>> temp = new ArrayList<>();
+//        if(!isEmpty()){
+//            inorderSubtree(validate(root()), temp);
+//        }
+//        for(Position<E> pos : temp){
+//            System.out.print(pos.getElement());
+//        }
+//        return temp;
+//    }
 
 
 

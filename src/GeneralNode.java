@@ -15,6 +15,8 @@ public class GeneralNode<E> implements Position<E> {
     private GeneralNode parent;
     private ArrayList<GeneralNode<E>> children;
 
+    private int x,y;
+
 
     //this node will have no children when it's initially created - for the root.
     public GeneralNode(E element, GeneralNode parent){
@@ -25,6 +27,26 @@ public class GeneralNode<E> implements Position<E> {
     @Override
     public E getElement() {
         return element;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y = y;
     }
 
     public void setElement(E element){
