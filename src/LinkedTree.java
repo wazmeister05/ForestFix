@@ -7,21 +7,23 @@ public class LinkedTree<E> extends AbstractTree<E> {
     private Node<E> root;
     private int size;
 
-    protected static class Node<E> implements Position<E>{
+
+
+    protected static class Node<E> implements Position<E> {
 
         private E element;
-        private ArrayList<Node<E>> children;
+        private ArrayList<Position<E>> children;
         private Node<E> parent;
 
         private int x, y;
 
-        public Node(E element, Node<E> parent, ArrayList<Node<E>> children) {
+        public Node(E element, Node<E> parent, ArrayList<Position<E>> children) {
             this.element = element;
             this.parent = parent;
             this.children = children;
         }
 
-        public Node<E> getParent() {
+        public Position<E> getParent() {
             return parent;
         }
 
@@ -64,12 +66,12 @@ public class LinkedTree<E> extends AbstractTree<E> {
             return null;
         }
 
-        public List<Node<E>> getChildren() {
+        public List<Position<E>> getChildren() {
             return children;
         }
 
-        public void setChildren(Node<E> children) {
-            this.children.add(children);
+        public void setChildren(Position<E> child) {
+            children.add(child);
         }
     }
 
@@ -92,13 +94,14 @@ public class LinkedTree<E> extends AbstractTree<E> {
 
     public void addRoot(E element) throws IllegalStateException{
         root = new Node<>(element, null, null);
+        size = 1;
     }
 
     public Position<E> addChild(Position<E> p, E element){
-        LinkedTree.Node<E> parent = validate(p);
+        Node<E> parent = validate(p);
         Node<E> child = new Node<>(element, parent, null);
         size++;
-        parent.setChildren(child);
+        //parent.setChildren(child);
         return child;
     }
 
@@ -106,7 +109,7 @@ public class LinkedTree<E> extends AbstractTree<E> {
 
     @Override
     public Position<E> parent(Position<E> p) throws IllegalArgumentException {
-        Node<E> parent = validate(p).getParent();
+        Node<E> parent = (Node<E>) validate(p).getParent();
         return (Position)parent;
     }
 

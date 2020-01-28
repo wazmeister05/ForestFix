@@ -1,4 +1,3 @@
-import java.rmi.activation.ActivationGroup_Stub;
 import java.util.*;
 
 //video 1.1
@@ -90,14 +89,14 @@ public abstract class AbstractTree<E> implements Tree<E>  {                     
         return temp;
     }
 
-    private void preorderSubtree(Position<E> p, List<Position<E>> temp){        //preorder adds position to temp before ordering children
+    protected void preorderSubtree(Position<E> p, List<Position<E>> temp){        //preorder adds position to temp before ordering children
         temp.add(p);
         for(Position<E> child : children(p)){
             preorderSubtree(child, temp);
         }
     }
 
-    private void postorderSubtree(Position<E> p, List<Position<E>> temp){
+    protected void postorderSubtree(Position<E> p, List<Position<E>> temp){
         for(Position<E> child : children(p)){
             postorderSubtree(child, temp);
         }

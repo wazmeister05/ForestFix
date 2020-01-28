@@ -30,7 +30,7 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
     }
 
     @Override
-    public Iterable<Position<E>> children(Position<E> p){                    //Returns iterable object of positions of children
+    public List<Position<E>> children(Position<E> p){                    //Returns iterable object of positions of children
         List<Position<E>> temp = new ArrayList<>(2);            //Binary tree so never more than 2 children
         if(left(p) != null){
             temp.add(left(p));                      //if the given node has a child on the left, add the child to temp
@@ -40,4 +40,33 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
         }
         return temp;                                //return temp
     }
+
+    public Iterable<Position<E>> inorder(){
+        List<Position<E>> temp = new ArrayList<>();
+        if(!isEmpty()){
+            inorderSubtree(root(), temp);
+        }
+        for(Position<E> pos : temp){
+            System.out.print(pos.getElement());
+        }
+        return temp;
+    }
+
+    private void inorderSubtree(Position<E> p, List<Position<E>> temp) {
+        if(left(p) != null){
+            inorderSubtree(left(p), temp);
+        }
+        temp.add(p);
+        if(right(p) != null){
+            inorderSubtree(right(p), temp);
+        }
+    }
+
+    private void eulerTourSubtree(Position<E> p, List<Position<E>> temp){
+        temp.add(p);
+        System.out.println(p.getElement());
+
+
+    }
+
 }

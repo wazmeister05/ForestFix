@@ -3,7 +3,11 @@ import java.awt.*;
 
 public class DrawApp extends JPanel {
 
-    private static LinkedBinaryTree<Integer> tree = new LinkedBinaryTree<>();
+    private static LinkedBinaryTree<Integer> tree;
+
+    public DrawApp(LinkedBinaryTree tree){
+        this.tree = tree;
+    }
 
     public void paintComponent(Graphics g){
         //draw tree here
@@ -14,12 +18,22 @@ public class DrawApp extends JPanel {
                 g.drawOval(pos.getX()*20, pos.getY()*50, 20, 20);
                 g.fillOval(pos.getX()*20, pos.getY()*50, 19, 19);
                 g.drawString(String.valueOf(pos.getElement()), pos.getX()*20, pos.getY()*50);
+
+                //tried drawing lines between them. Got it but it looks terrible. :)
+                if(pos != tree.root()) {
+                    g.drawLine(tree.parent(pos).getX()*20, tree.parent(pos).getY()*50, pos.getX() * 20, pos.getY() * 50);
+                }
             }
             else{
                 g.setColor(Color.GREEN);
                 g.drawRect((pos.getX()*20), pos.getY()*50, 19, 19);
                 g.fillRect((pos.getX()*20), pos.getY()*50, 19, 19);
                 g.drawString(String.valueOf(pos.getElement()), pos.getX()*20, pos.getY()*50);
+
+                //same as above!
+                if(pos != tree.root()) {
+                    g.drawLine(tree.parent(pos).getX()*20, tree.parent(pos).getY()*50, pos.getX() * 20, pos.getY() * 50);
+                }
             }
         }
     }
@@ -37,16 +51,4 @@ public class DrawApp extends JPanel {
         return x;
     }
 
-    public static void main(String[] args) {
-
-        JFrame jframe = new JFrame();
-        tree.addRoot(1);
-        tree.addLeft(tree.root(), 2);
-        tree.addRight(tree.root(), 3);
-        jframe.add(new DrawApp());
-        jframe.setSize(500, 500);
-        jframe.setVisible(true);
-
-
-    }
 }

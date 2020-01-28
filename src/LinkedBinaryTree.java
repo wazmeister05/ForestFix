@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
@@ -25,6 +26,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
         public Node<E> getParent() {                                //get parent node
             return parent;
+        }
+
+        @Override
+        public List<Position<E>> getChildren() {
+            return null;
         }
 
         public void setParent(Node<E> parent) {                     //set parent node
@@ -211,29 +217,27 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return temp;                    //return saved element
     }
 
+    public void eulerTour(){
+        Stack <Position<E>> stack = new Stack<>();
+        stack.add(root);
 
-//    private void inorderSubtree(Node node, List<Position<E>> temp) {
-//        if(node == null){
-//            return;             //researching solutions to this and apparently this is possible. Who knew.
-//        }
-//        inorderSubtree(node.getLeft(), temp);
-//        temp.add(node);
-//        inorderSubtree(node.getRight(), temp);
-//
-//
-//    }
-//
-//    public Iterable<Position<E>> inorder() {
-//        List<Position<E>> temp = new ArrayList<>();
-//        if(!isEmpty()){
-//            inorderSubtree(validate(root()), temp);
-//        }
-//        for(Position<E> pos : temp){
-//            System.out.print(pos.getElement());
-//        }
-//        return temp;
-//    }
+        List <Position<E>> nodes = new ArrayList<>();
 
+        while (!stack.isEmpty()){
+            Position<E> p = stack.pop();
+            System.out.println(p.getElement());
+            if(!nodes.contains(p)){
+                if(!children(p).isEmpty()) {
+                    for (Position<E> child : children(p)) {
+                        stack.add(p);
+                        stack.add(child);
+                    }
+                }
+                nodes.add(p);
+            }
+        }
+
+    }
 
 
     //these don't seem to have a purpose as of week 2...

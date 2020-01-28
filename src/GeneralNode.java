@@ -12,16 +12,20 @@ import java.util.List;
 public class GeneralNode<E> implements Position<E> {
 
     private E element;
-    private GeneralNode parent;
-    private ArrayList<GeneralNode<E>> children;
+    private GeneralNode<E> parent;
+    private List<Position<E>> children;
 
     private int x,y;
 
 
     //this node will have no children when it's initially created - for the root.
-    public GeneralNode(E element, GeneralNode parent){
+    public GeneralNode(E element, GeneralNode<E> parent){
         this.element = element;
         this.parent = parent;
+    }
+
+    public GeneralNode(E element){
+        this.element = element;
     }
 
     @Override
@@ -58,15 +62,35 @@ public class GeneralNode<E> implements Position<E> {
     }
 
     public void setParent(GeneralNode<E> parent){
+        parent.addChild(this);
         this.parent = parent;
     }
 
-
-    public void setChildren(ArrayList<GeneralNode<E>> children){
-        this.children = children;
+    private void addChild(E element) {
+        GeneralNode<E> child = new GeneralNode<E>(element);
+        child.setParent(this);
+        this.children.add(child);
     }
 
-    public List<GeneralNode<E>> getChildren(){
+    public void addChild(GeneralNode<E> child) {
+        child.setParent(this);
+        this.children.add(child);
+    }
+
+    public boolean isRoot(){
+        return (this.parent == null);
+    }
+
+
+    public List<Position<E>> getChildren(){
         return children;
+    }
+
+    public boolean isLeaf() {
+        return this.children.size() == 0;
+    }
+
+    public void removeParent() {
+        this.parent = null;
     }
 }
