@@ -8,12 +8,21 @@ public class Week3Ex {
 
     //this second and third trees is for exercise 3.14
     private static LinkedBinaryTree<Integer> tree2 = new LinkedBinaryTree<>();
-    private static ActualGeneralTree<Integer> tree3 = new ActualGeneralTree<>();
+    private static GeneralTree<Integer> tree3 = new GeneralTree<>();
 
 
     public static void main(String[] args) {
         buildTree();
-      //  exercise36();
+
+        //exercise 3.6. The BFS and DFS algorithms can be found in AbstractTree
+        exercise36();
+        //Looking at the times and plotting the graphs, I have determined that they run in the same time, O(n).
+
+
+        //exercise 3.14.
+        //Qu.1 - The Euler tour can be found in AbstractBinaryTree
+        //Qu.2 - I've managed to draw this one, see below.
+        //Qu.3 -
         exercise314();
     }
 
@@ -120,10 +129,22 @@ public class Week3Ex {
 
         //Question 3
         //General Tree
-        ArrayList<Position> children = new ArrayList<>();
         JFrame jframe1 = new JFrame();
-        Position<Integer> root = new GeneralNode<>(5);
+        tree3.addRoot(1);
+        Position<Integer> qu3three = tree3.addChild(tree3.root(), 3);
+        tree3.addChild(tree3.root(), 6);
+        Position<Integer> qu3two = tree3.addChild(tree3.root(), 2);
 
+        tree3.addChild(qu3three, 7);
+        tree3.addChild(qu3three, 5);
+
+        tree3.addChild(qu3two, 4);
+//        jframe1.add(new DrawApp(tree3));
+//        jframe1.setSize(500, 500);
+//        jframe1.setVisible(true);
+
+        System.out.println("Test");
+        tree3.breadthFirst();
 
     }
 }

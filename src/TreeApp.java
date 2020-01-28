@@ -1,7 +1,7 @@
 public class TreeApp {
 
     private static LinkedBinaryTree<Integer> tree = new LinkedBinaryTree<>();
-    private static LinkedTree<String> tree2 = new LinkedTree<>();
+    private static GeneralTree<String> tree2 = new GeneralTree<>();
     private static LinkedTree<String> tree3 = new LinkedTree<>();
 
     public static void main(String[] args){

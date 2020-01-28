@@ -13,7 +13,7 @@ public class GeneralNode<E> implements Position<E> {
 
     private E element;
     private GeneralNode<E> parent;
-    private List<Position<E>> children;
+    private ArrayList<Position<E>> children;
 
     private int x,y;
 
@@ -22,6 +22,7 @@ public class GeneralNode<E> implements Position<E> {
     public GeneralNode(E element, GeneralNode<E> parent){
         this.element = element;
         this.parent = parent;
+        this.children = new ArrayList<>();
     }
 
     public GeneralNode(E element){
@@ -57,12 +58,11 @@ public class GeneralNode<E> implements Position<E> {
         this.element = element;
     }
 
-    public GeneralNode getParent(){
+    public Position<E> getParent(){
         return parent;
     }
 
     public void setParent(GeneralNode<E> parent){
-        parent.addChild(this);
         this.parent = parent;
     }
 
@@ -81,16 +81,12 @@ public class GeneralNode<E> implements Position<E> {
         return (this.parent == null);
     }
 
+    public void setChildren(GeneralNode<E> child) {
+        children.add((Position)child);
+    }
+
 
     public List<Position<E>> getChildren(){
         return children;
-    }
-
-    public boolean isLeaf() {
-        return this.children.size() == 0;
-    }
-
-    public void removeParent() {
-        this.parent = null;
     }
 }

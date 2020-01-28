@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,10 +18,10 @@ public class LinkedTree<E> extends AbstractTree<E> {
 
         private int x, y;
 
-        public Node(E element, Node<E> parent, ArrayList<Position<E>> children) {
+        public Node(E element, Node<E> parent) {
             this.element = element;
             this.parent = parent;
-            this.children = children;
+            this.children = new ArrayList<>();
         }
 
         public Position<E> getParent() {
@@ -70,8 +71,8 @@ public class LinkedTree<E> extends AbstractTree<E> {
             return children;
         }
 
-        public void setChildren(Position<E> child) {
-            children.add(child);
+        public void setChildren(Node<E> child) {
+            children.add((Position)child);
         }
     }
 
@@ -93,15 +94,15 @@ public class LinkedTree<E> extends AbstractTree<E> {
     }
 
     public void addRoot(E element) throws IllegalStateException{
-        root = new Node<>(element, null, null);
+        root = new Node<>(element, null);
         size = 1;
     }
 
     public Position<E> addChild(Position<E> p, E element){
         Node<E> parent = validate(p);
-        Node<E> child = new Node<>(element, parent, null);
+        Node<E> child = new Node<>(element, parent);
         size++;
-        //parent.setChildren(child);
+        parent.setChildren(child);
         return child;
     }
 
@@ -109,18 +110,17 @@ public class LinkedTree<E> extends AbstractTree<E> {
 
     @Override
     public Position<E> parent(Position<E> p) throws IllegalArgumentException {
-        Node<E> parent = (Node<E>) validate(p).getParent();
-        return (Position)parent;
+        return validate(p).getParent();
     }
 
     @Override
     public Iterable<Position<E>> children(Position<E> p) throws IllegalArgumentException {
-        return null;
+        return p.getChildren();
     }
 
     @Override
     public int numChildren(Position<E> p) throws IllegalArgumentException {
-        return 0;
+        return validate(p).getChildren().size();
     }
 
     @Override

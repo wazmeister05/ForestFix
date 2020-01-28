@@ -4,9 +4,14 @@ import java.awt.*;
 public class DrawApp extends JPanel {
 
     private static LinkedBinaryTree<Integer> tree;
+    private static GeneralTree<Integer> tree2;
 
     public DrawApp(LinkedBinaryTree tree){
         this.tree = tree;
+    }
+
+    public DrawApp(GeneralTree tree){
+        this.tree2 = tree;
     }
 
     public void paintComponent(Graphics g){
@@ -50,5 +55,4 @@ public class DrawApp extends JPanel {
         }
         return x;
     }
-
 }

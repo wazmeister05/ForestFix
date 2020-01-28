@@ -18,6 +18,8 @@ public class Week2Ex {
         System.out.println(tree.depth(G));
         System.out.println(tree.height(G));
 
+
+        //the preorder and postorder methods can be found in AbstractTree, the inorder in the AbstractBinaryTree
         System.out.println("\n\n2. Preorder method");
         tree.preorder();
         System.out.println("\n\n3. Inorder method");
@@ -30,6 +32,24 @@ public class Week2Ex {
         for (Position<Character> node : tree.breadthFirst()) {
             System.out.print(node.getElement());
         }
+
+
+        /* Tree:
+                      50
+                     /  \
+                    10   20
+                  /  \   /  \
+                30   60  70  80
+                 \       /
+                 40     90
+
+
+                 in this example, the following orders apply:
+                 Preorder: 50 10 30 40 60 20 70 90 80
+                 Inorder: 40 30 10 60 50 90 70 20 80
+                 Postorder: 40 30 60 10 90 70 80 20 50
+                 Breadth First: 50 10 20 30 60 70 80 40 90
+         */
 
     }
 

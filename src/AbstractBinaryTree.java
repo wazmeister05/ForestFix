@@ -41,6 +41,16 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
         return temp;                                //return temp
     }
 
+
+
+
+    /*
+
+    This is for Week 2 question 3. I believe Damien did this in a video after this question was asked, at some point in week 3 or 4.
+    My initial version lived in LinkedBinaryTree but was moved here at his suggestion in the video.
+
+     */
+
     public Iterable<Position<E>> inorder(){
         List<Position<E>> temp = new ArrayList<>();
         if(!isEmpty()){
