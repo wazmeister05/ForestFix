@@ -217,27 +217,6 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return temp;                    //return saved element
     }
 
-    public void eulerTour(){
-        Stack <Position<E>> stack = new Stack<>();
-        stack.add(root);
-
-        List <Position<E>> nodes = new ArrayList<>();
-
-        while (!stack.isEmpty()){
-            Position<E> p = stack.pop();
-            System.out.println(p.getElement());
-            if(!nodes.contains(p)){
-                if(!children(p).isEmpty()) {
-                    for (Position<E> child : children(p)) {
-                        stack.add(p);
-                        stack.add(child);
-                    }
-                }
-                nodes.add(p);
-            }
-        }
-
-    }
 
 
     //these don't seem to have a purpose as of week 2...

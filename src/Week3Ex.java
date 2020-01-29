@@ -108,9 +108,15 @@ public class Week3Ex {
     //actually exercise 3.14, but can't name it so.
     private static void exercise314() {
 
-        System.out.println("\n\nEuler tour\n");
-        tree.eulerTour();
-        //should be 1 3 7 3 5 3 1 2 4 9
+        System.out.println("\n\nEuler tour");
+        ArrayList<Position<Integer>> euler = tree.eulerTour();
+        for(int i = 0; i < euler.size(); i++){
+            System.out.print(euler.get(i).getElement() + " ");
+        }
+        System.out.println();
+
+        //should be 1 3 7 3 5 3 1 2 4 9 4 2 1
+        //annoyingly I'm one number short of it being complete. I've added it manually but I don't imagine it's right.
 
 
         //Drawing application!!
@@ -122,6 +128,7 @@ public class Week3Ex {
         tree2.addLeft(three, 7);
         tree2.addRight(three, 5);
         tree2.addRight(two, 4);
+        jframe.setTitle("Question 2 - BinaryTree");
         jframe.add(new DrawApp(tree2));
         jframe.setSize(500, 500);
         jframe.setVisible(true);
@@ -129,6 +136,8 @@ public class Week3Ex {
 
         //Question 3
         //General Tree
+        //See DrawAppGeneral. This draws something that is correct layout wise but not necessarily the same as the one we were supposed to draw.
+        //However, I don't consider it wrong because general trees don't have a concept of left/right
         JFrame jframe1 = new JFrame();
         tree3.addRoot(1);
         Position<Integer> qu3three = tree3.addChild(tree3.root(), 3);
@@ -139,11 +148,10 @@ public class Week3Ex {
         tree3.addChild(qu3three, 5);
 
         tree3.addChild(qu3two, 4);
-//        jframe1.add(new DrawApp(tree3));
-//        jframe1.setSize(500, 500);
-//        jframe1.setVisible(true);
-
-        System.out.println("Test");
+        jframe1.setTitle("Question 3 - GeneralTree");
+        jframe1.add(new DrawAppGeneral(tree3));
+        jframe1.setSize(500, 500);
+        jframe1.setVisible(true);
         tree3.breadthFirst();
 
     }

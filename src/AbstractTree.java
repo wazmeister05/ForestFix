@@ -142,7 +142,7 @@ public abstract class AbstractTree<E> implements Tree<E>  {                     
                 for(Position<E> child:children(p)){
                     queue.add(child);
                 }
-                System.out.print(p.getElement());
+                System.out.print(p.getElement() + " ");
             }while(p.getElement() != element);
         }
         return p;
@@ -158,7 +158,7 @@ public abstract class AbstractTree<E> implements Tree<E>  {                     
                 for(Position<E> child:children(p)){
                     stack.add(child);
                 }
-                System.out.print(p.getElement());
+                System.out.print(p.getElement() + " ");
             }while(p.getElement() != element);
         }
         return p;
